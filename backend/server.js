@@ -18,7 +18,9 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
-
+app.get("/test", (req, res) => {
+  res.send("Backend is running");
+});
 //routes
 //user routes
 app.use("/api/v1/users", require("./routes/userRoute"));

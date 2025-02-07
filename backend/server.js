@@ -1,43 +1,82 @@
+// const express = require("express");
+// const cors = require("cors");
+// const morgan = require("morgan");
+// const dotenv = require("dotenv");
+// const colors = require("colors");
+// const path = require("path");
+// const connectDb = require("./config/connectDb");
+// // config dot env file
+// dotenv.config();
+
+// //databse call
+// connectDb();
+
+// //rest object
+// const app = express();                              
+
+// //middlewares
+// app.use(morgan("dev"));
+// app.use(express.json());
+// app.use(cors());
+// app.get("/test", (req, res) => {
+//   res.send("Backend is running");
+// });
+// //routes
+// //user routes
+// app.use("/api/v1/users", require("./routes/userRoute"));
+// //transections routes
+// app.use("/api/v1/transections", require("./routes/transectionRoutes"));
+
+// //static files
+// app.use(express.static(path.join(__dirname, "./client/build")));
+
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
+
+// //port
+// const PORT = 8080 || process.env.PORT;
+
+// //listen server
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const colors = require("colors");
-const path = require("path");
 const connectDb = require("./config/connectDb");
-// config dot env file
+
+// Load environment variables
 dotenv.config();
 
-//databse call
+// Connect to database
 connectDb();
 
-//rest object
-const app = express();                              
+// Initialize Express
+const app = express();
 
-//middlewares
+// Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
+
+// Test Route
 app.get("/test", (req, res) => {
   res.send("Backend is running");
 });
-//routes
-//user routes
+
+// Routes
 app.use("/api/v1/users", require("./routes/userRoute"));
-//transections routes
 app.use("/api/v1/transections", require("./routes/transectionRoutes"));
 
-//static files
-app.use(express.static(path.join(__dirname, "./client/build")));
+// Define PORT correctly
+const PORT = process.env.PORT || 8080;
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
-
-//port
-const PORT = 8080 || process.env.PORT;
-
-//listen server
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+

@@ -18,7 +18,8 @@ const app = express();
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: 'https://expense-tracker-deploy-frontend-1.onrender.com' }));
+
 
 // Test Route
 app.get("/test", (req, res) => {
